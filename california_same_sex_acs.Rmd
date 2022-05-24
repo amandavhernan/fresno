@@ -1,0 +1,50 @@
+---
+title: "Same-Sex Couples in California"
+output: html_notebook
+---
+
+```{r}
+
+library(tidyverse)
+library(tidycensus)
+library(dplyr)
+
+```
+
+```{r}
+
+# load acs variables
+
+acs_variables <- load_variables(year = 2019,
+                      dataset = "acs5",
+                      cache = TRUE)
+
+# married same-sex couple households
+
+california_married_samesex_couples <- get_acs(geography = "state",
+              variables = c(samesex_married = "B11009_004"),
+              state = "CA",
+              year = 2019)
+
+california_married_couples <- get_acs(geography = "state",
+              variables = c(total_married = "B11009_002"),
+              state = "CA",
+              year = 2019)
+
+(77999/6491236)*100 # 1.2
+
+# cohabiting same-sex couple households
+  
+california_cohab_samesex_couples <- get_acs(geography = "state",
+              variables = c(samesex_cohab = "B11009_009"),
+              state = "CA",
+              year = 2019)
+
+california_cohab_couples <- get_acs(geography = "state",
+              variables = c(total_cohab = "B11009_007"),
+              state = "CA",
+              year = 2019)
+
+(53005/874868)*100 # 6.05
+
+```
